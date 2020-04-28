@@ -15,7 +15,7 @@ namespace ApiBase.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source=./ApiBase.db");
+            optionsBuilder.UseInMemoryDatabase("ApiBase");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

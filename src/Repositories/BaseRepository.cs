@@ -120,6 +120,7 @@ namespace ApiBase.Repositories
         public void Save(object data)
         {
             this.Context.Add(data);
+            this.Context.SaveChanges();
         }
 
         /// <summary>
