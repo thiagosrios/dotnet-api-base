@@ -2,6 +2,7 @@
 using ApiBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace ApiBase.Controllers
@@ -21,7 +22,7 @@ namespace ApiBase.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
-            IEnumerable<User> users = this.repository.GetAll();
+            IEnumerable<User> users = this.repository.GetUsers();
 
             return Ok(users);
         }
@@ -30,13 +31,29 @@ namespace ApiBase.Controllers
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)
         {
-            User user = this.repository.Get(id);
+            User user = this.repository.GetUser(id);
             if (user == null)
             {
                 return NotFound();
             }
 
             return user;
+        }
+
+        // POST: api/User
+        [HttpPost]
+        public ActionResult<User> PostUser(User user)
+        {
+            try
+            {
+                this.repository.SaveUser(user);
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         // PUT: api/Users/1
@@ -50,7 +67,7 @@ namespace ApiBase.Controllers
 
             try
             {
-                this.repository.Update(user);
+                this.repository.UpdateUser(user);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,26 +84,17 @@ namespace ApiBase.Controllers
             return NoContent();
         }
 
-        // POST: api/User
-        [HttpPost]
-        public ActionResult<User> PostUser(User user)
-        {
-            this.repository.Save(user);
-
-            return Ok(user);
-        }
-
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public ActionResult<User> DeleteUsers(int id)
         {
-            User user = this.repository.Get(id);
+            User user = this.repository.GetUser(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            this.repository.Delete(user);
+            this.repository.DeleteUser(user);
 
             return user;
         }

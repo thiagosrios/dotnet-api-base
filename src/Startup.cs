@@ -23,7 +23,7 @@ namespace ApiBase
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseSqlite("Data Source=api.db"));
+            services.AddDbContext<Context>(options => options.UseSqlite($"Data Source=./ApiBase.db"));
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddControllers();
         }

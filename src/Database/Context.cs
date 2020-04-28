@@ -8,6 +8,22 @@ namespace ApiBase.Database
         public DbSet<User> Users { get; set; }
 
         public Context() {}
-        public Context(DbContextOptions<Context> options) : base(options) {}
+        public Context(DbContextOptions<Context> options) : base(options) 
+        {
+            Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite($"Data Source=./ApiBase.db");
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>()
+                .HasKey(e => e.Id);
+
+            base.OnModelCreating(builder);
+        }
     }
 }

@@ -9,29 +9,29 @@ namespace ApiBase.Repositories
     {
         public UserRepository(Context context) : base(context){}
 
-        public User Get(int id)
+        public User GetUser(int id)
         {
             return this.FindById(id);
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetUsers()
         {
             return this.FindAll();
         }
 
-        public void Save(User user)
+        public void SaveUser(User user)
         {
             this.Save(user);
         }
 
-        public void Update(User user)
+        public void UpdateUser(User user)
         {
-            this.Update(user);
+            this.UpdateUser(user);
         }
 
-        public void Delete(User user)
+        public void DeleteUser(User user)
         {
-            this.Delete(user);
+            this.DeleteUser(user);
         }
 
         public bool UserExists(int id)
