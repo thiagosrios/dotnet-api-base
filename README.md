@@ -10,4 +10,25 @@ Para fins de inicialização e demostração do projeto, foi adicionado uma clas
 
 - [Git](https://git-scm.com/) 
 - [.Net Core](https://dotnet.microsoft.com/)
-- [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/) ou [Visual Studio Code](https://code.visualstudio.com/)
+- [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/), [Visual Studio Code](https://code.visualstudio.com/) ou outro editor com suporte ao C# e .Net Core. 
+
+### Inicialização
+
+Se estiver usando Windows com a IDE do Visual Studio, simplesmente importe o projeto através do arquivo de solução (*ApiBase.sln*). As propriedades de execução da solução presentes em *Properties -> launchSettings.json* serão carregadas e habilitadas automaticamente. Escolha um dos perfis e clique no ícone para excutar o projeto. 
+
+Caso esteja usando o Linux ou prefira executar via linha de comando, digite: 
+
+```bash
+dotnet run
+```
+
+Para o modo *watch* (semelhante a um *live reload*), digite: 
+
+```bash
+dotnet watch run
+```
+No dois modos de execução uma instância do navegador padrão será aberta direcionada para a rota principal da API. Se tudo estiver funcionando, a seguinte mensagem deve aparecer: 
+
+> API em execucao
+
+Caso queira alterar esse comportamento, edite a propriedade *launchBrowser* do perfil específico de execução, dentro da seção *profiles*.  
