@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Api.Exceptions
+namespace ApiBase.Exceptions
 {
     [Serializable()]
     public class BusinessException : Exception

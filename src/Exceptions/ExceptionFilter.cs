@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 
-namespace Api.Exceptions
+namespace ApiBase.Exceptions
 {
     public class ExceptionFilter : IExceptionFilter
     {
