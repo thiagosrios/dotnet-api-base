@@ -22,7 +22,7 @@ namespace ApiBase.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
-            IEnumerable<User> users = this.repository.GetUsers();
+            IEnumerable<User> users = this.repository.FindAll();
 
             return Ok(users);
         }
@@ -31,7 +31,7 @@ namespace ApiBase.Controllers
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)
         {
-            User user = this.repository.GetUser(id);
+            User user = this.repository.FindById(id);
             if (user == null)
             {
                 return NotFound();
@@ -46,7 +46,7 @@ namespace ApiBase.Controllers
         {
             try
             {
-                this.repository.SaveUser(user);
+                this.repository.Save(user);
 
                 return Ok(user);
             }
@@ -67,7 +67,7 @@ namespace ApiBase.Controllers
 
             try
             {
-                this.repository.UpdateUser(user);
+                this.repository.Update(user);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -88,13 +88,13 @@ namespace ApiBase.Controllers
         [HttpDelete("{id}")]
         public ActionResult<User> DeleteUsers(int id)
         {
-            User user = this.repository.GetUser(id);
+            User user = this.repository.FindById(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            this.repository.DeleteUser(user);
+            this.repository.Delete(user);
 
             return user;
         }

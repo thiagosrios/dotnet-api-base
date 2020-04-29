@@ -1,39 +1,22 @@
 ﻿using ApiBase.Database;
 using ApiBase.Interfaces;
 using ApiBase.Models;
-using System.Collections.Generic;
 
 namespace ApiBase.Repositories
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
+        /// <summary>
+        /// Classe para consulta de usuários
+        /// </summary>
+        /// <param name="context">Instância do contexto</param>
         public UserRepository(Context context) : base(context){}
 
-        public User GetUser(int id)
-        {
-            return this.FindById(id);
-        }
-
-        public IEnumerable<User> GetUsers()
-        {
-            return this.FindAll();
-        }
-
-        public void SaveUser(User user)
-        {
-            this.Save(user);
-        }
-
-        public void UpdateUser(User user)
-        {
-            this.UpdateUser(user);
-        }
-
-        public void DeleteUser(User user)
-        {
-            this.DeleteUser(user);
-        }
-
+        /// <summary>
+        /// Determina se um registro de usuário existe com base no id
+        /// </summary>
+        /// <param name="id">Identificador do usuário</param>
+        /// <returns>Valor da verificação de existência</returns>
         public bool UserExists(int id)
         {
             return this.Exists(x => x.Id == id);

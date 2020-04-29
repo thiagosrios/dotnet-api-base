@@ -1,9 +1,9 @@
-﻿using System;
+﻿using ApiBase.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ApiBase.Repositories
 {
@@ -11,7 +11,7 @@ namespace ApiBase.Repositories
     /// Classe de base para os repositórios usados na aplicação
     /// </summary>
     /// <typeparam name="TEntity">Tipo de Entidade que herdará os métodos</typeparam>
-    public abstract class BaseRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         public DbSet<TEntity> Model { get; }
         public DbContext Context { get; }
@@ -33,7 +33,7 @@ namespace ApiBase.Repositories
         /// <returns>Registro do model usado no BaseService</returns>
         public TEntity FindById(object id)
         {
-            return Context.Find<TEntity>(id);
+            return this.Model.Find(id);
         }
 
         /// <summary>
@@ -52,8 +52,7 @@ namespace ApiBase.Repositories
         /// <returns>IQueryable do model para ser manipulado</returns>
         public IQueryable<TEntity> Search(Expression<Func<TEntity, bool>> predicate)
         {
-            IQueryable<TEntity> query = this.Model.Where(predicate);
-            return query;
+            return this.Model.Where(predicate);
         }
 
         /// <summary>
@@ -117,9 +116,9 @@ namespace ApiBase.Repositories
         /// Salva registros no banco de dados a partir de objeto enviado
         /// </summary>
         /// <param name="data">Objeto da entidade que deve ser persistido</param>
-        public void Save(object data)
+        public virtual void Save(TEntity entity)
         {
-            this.Context.Add(data);
+            this.Model.Add(entity);
             this.Context.SaveChanges();
         }
 
@@ -128,19 +127,17 @@ namespace ApiBase.Repositories
         /// </summary>
         /// <param name="data">Objeto que deve ser atualizado no banco</param>
         /// <returns>Resultado da atualização, contendo quantidade de registros atualizados</returns>
-        public void Update(object data)
+        public virtual void Update(TEntity entity)
         {
-            this.Context.Entry(data).State = EntityState.Modified;
-            this.Context.Update(data);
+            this.Context.Entry(entity).State = EntityState.Modified;
+            this.Model.Update(entity);
+            this.Context.SaveChanges();
         }
 
-        /// <summary>
-        /// Retorna quantidade de alterações realizadas nas operações de save ou update
-        /// </summary>
-        /// <returns>IEnumerable contendo as entidades atualizadas</returns>
-        public IEnumerable<EntityEntry<TEntity>> EntityChanges()
+        public virtual void Delete(TEntity entity)
         {
-            return this.Context.ChangeTracker.Entries<TEntity>();
+            this.Model.Remove(entity);
+            this.Context.SaveChanges();
         }
 
         /// <summary>
