@@ -1,5 +1,6 @@
 ﻿using ApiBase.Interfaces;
 using ApiBase.Models;
+using ApiBase.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,15 +58,19 @@ namespace ApiBase.Services
         /// de senha antes de salvar registro no banco
         /// </summary>
         /// <param name="user">Objeto User</param>
-        public void CreateUser(User user)
+        public User CreateUser(User user)
         {
             try
             {
+                user.Password = CryptographyUtil.GenerateHash(user.Password);
                 this.userRepository.Save(user);
+                user.Password = null;
+
+                return user;
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao cadastrar usuário: " + ex.Message);
+                throw new Exception("Erro ao cadastrar usuário. " + ex.Message);
             }
         }
 

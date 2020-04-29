@@ -42,9 +42,9 @@ namespace ApiBase.Controllers
         [HttpPost]
         public ActionResult<User> PostUser(User user)
         {
-            this.service.CreateUser(user);
+            User newUser = this.service.CreateUser(user);
 
-            return Ok(user);
+            return Ok(newUser);
         }
 
         // PUT: api/User/1

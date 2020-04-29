@@ -8,7 +8,7 @@ namespace ApiBase.Interfaces
         User FindUserByLogin(string login);
         User GetUser(int id);
         List<User> GetUsers();
-        void CreateUser(User user);
+        User CreateUser(User user);
         void UpdateUser(int id, User user);
         void DeleteUser(User user);
     }
