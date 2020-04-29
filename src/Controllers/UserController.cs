@@ -1,8 +1,6 @@
 ﻿using ApiBase.Interfaces;
 using ApiBase.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 
 namespace ApiBase.Controllers
@@ -11,27 +9,27 @@ namespace ApiBase.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository repository;
+        private readonly IUserService service;
 
-        public UserController(IUserRepository repository)
+        public UserController(IUserService service)
         {
-            this.repository = repository;
+            this.service = service;
         }
 
-        // GET: api/Users
+        // GET: api/User
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetUsers()
+        public ActionResult<List<User>> GetUsers()
         {
-            IEnumerable<User> users = this.repository.FindAll();
+            List<User> users = this.service.GetUsers();
 
             return Ok(users);
         }
 
-        // GET: api/Users/1
+        // GET: api/User/1
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)
         {
-            User user = this.repository.FindById(id);
+            User user = this.service.GetUser(id);
             if (user == null)
             {
                 return NotFound();
@@ -44,57 +42,36 @@ namespace ApiBase.Controllers
         [HttpPost]
         public ActionResult<User> PostUser(User user)
         {
-            try
-            {
-                this.repository.Save(user);
+            this.service.CreateUser(user);
 
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return Ok(user);
         }
 
-        // PUT: api/Users/1
+        // PUT: api/User/1
         [HttpPut("{id}")]
-        public IActionResult PutUser(int id, User user)
+        public ActionResult<User> PutUser(int id, User user)
         {
             if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            try
-            {
-                this.repository.Update(user);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!this.repository.UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            this.service.UpdateUser(id, user);
 
-            return NoContent();
+            return user;
         }
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public ActionResult<User> DeleteUsers(int id)
         {
-            User user = this.repository.FindById(id);
+            User user = this.service.GetUser(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            this.repository.Delete(user);
+            this.service.DeleteUser(user);
 
             return user;
         }

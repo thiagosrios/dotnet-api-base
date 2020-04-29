@@ -1,6 +1,7 @@
 using ApiBase.Database;
 using ApiBase.Interfaces;
 using ApiBase.Repositories;
+using ApiBase.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,7 @@ namespace ApiBase
         {
             services.AddDbContext<Context>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
             services.AddControllers();
         }
 
