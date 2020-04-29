@@ -1,5 +1,6 @@
 ﻿using ApiBase.Interfaces;
 using ApiBase.Models;
+using ApiBase.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -32,7 +33,7 @@ namespace ApiBase.Controllers
             User user = this.service.GetUser(id);
             if (user == null)
             {
-                return NotFound();
+                return NotFound(RequestResponse.ResourceNotFound("Usuário não encontrado"));
             }
 
             return user;
@@ -44,7 +45,7 @@ namespace ApiBase.Controllers
         {
             User newUser = this.service.CreateUser(user);
 
-            return Ok(newUser);
+            return Ok(RequestResponse.RequestSucessful("Usuário criado com sucesso", newUser));
         }
 
         // PUT: api/User/1
@@ -53,12 +54,12 @@ namespace ApiBase.Controllers
         {
             if (id != user.Id)
             {
-                return BadRequest();
+                return BadRequest(RequestResponse.RequestFailed("Dados inválidos"));
             }
 
             this.service.UpdateUser(id, user);
 
-            return user;
+            return Ok(RequestResponse.RequestSucessful("Usuário atualizado com sucesso!", user));
         }
 
         // DELETE: api/User/5
@@ -68,12 +69,12 @@ namespace ApiBase.Controllers
             User user = this.service.GetUser(id);
             if (user == null)
             {
-                return NotFound();
+                return NotFound(RequestResponse.RequestFailed("Usuário não encontrado"));
             }
 
             this.service.DeleteUser(user);
 
-            return user;
+            return Ok(RequestResponse.RequestSucessful("Usuário excluído"));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Api.Exceptions;
+﻿using ApiBase.Exceptions;
 using ApiBase.Interfaces;
 using ApiBase.Models;
 using ApiBase.Utils;
