@@ -1,4 +1,5 @@
-﻿using ApiBase.Interfaces;
+﻿using Api.Exceptions;
+using ApiBase.Interfaces;
 using ApiBase.Models;
 using ApiBase.Utils;
 using System;
@@ -70,7 +71,7 @@ namespace ApiBase.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao cadastrar usuário. " + ex.Message);
+                throw new BusinessException("Erro ao cadastrar usuário. " + ex.Message);
             }
         }
 
@@ -85,14 +86,14 @@ namespace ApiBase.Services
             {
                 if (!this.userRepository.UserExists(id))
                 {
-                    throw new Exception("Usuário não encontrado");
+                    throw new BusinessException("Usuário não encontrado");
                 }
 
                 this.userRepository.Update(user);
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao atualizar usuário: " + ex.Message);
+                throw new BusinessException("Erro ao atualizar usuário: " + ex.Message);
             }
         }
 
@@ -108,7 +109,7 @@ namespace ApiBase.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao excluir usuário: " + ex.Message);
+                throw new BusinessException("Erro ao excluir usuário: " + ex.Message);
             }
         }
     }

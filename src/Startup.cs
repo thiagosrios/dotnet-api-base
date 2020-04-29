@@ -1,3 +1,4 @@
+using Api.Exceptions;
 using ApiBase.Database;
 using ApiBase.Interfaces;
 using ApiBase.Repositories;
@@ -27,13 +28,31 @@ namespace ApiBase
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddControllers();
-            services.AddMvc()
+            services
+                .AddMvc(options =>
+                {
+                    // Inclui filtro para exceções, modificando o retorno das requisições em JSON
+                    options.Filters.Add(typeof(ExceptionFilter));
+                })          
                 .AddJsonOptions(options =>
                 {
+                    // Opções de serialização JSON, ignorando nulos
                     options.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
                     options.JsonSerializerOptions.IgnoreNullValues = true;
                     options.JsonSerializerOptions.WriteIndented = true;
                 });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("TrustedHosts", builder => 
+                {
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

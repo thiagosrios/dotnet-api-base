@@ -1,6 +1,7 @@
 ﻿using ApiBase.Interfaces;
 using ApiBase.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace ApiBase.Controllers
