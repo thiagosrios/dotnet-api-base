@@ -1,5 +1,6 @@
 ﻿using ApiBase.Interfaces;
 using ApiBase.Models;
+using ApiBase.Filters;
 using ApiBase.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
-using ApiBase.Exceptions;
 using ApiBase.Database;
+using ApiBase.Filters;
 using ApiBase.Interfaces;
 using ApiBase.Repositories;
 using ApiBase.Services;
@@ -31,13 +31,13 @@ namespace ApiBase
             services
                 .AddMvc(options =>
                 {
-                    // Inclui filtro para exceções, modificando o retorno das requisições em JSON
+                    // Inclui filtros para exceções e erros de validação
+                    options.Filters.Add(typeof(ValidateModelFilter));
                     options.Filters.Add(typeof(ExceptionFilter));
                 })          
                 .AddJsonOptions(options =>
                 {
                     // Opções de serialização JSON, ignorando nulos
-                    options.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
                     options.JsonSerializerOptions.IgnoreNullValues = true;
                     options.JsonSerializerOptions.WriteIndented = true;
                 });

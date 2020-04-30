@@ -25,7 +25,7 @@ namespace ApiBase.ViewModels
             };
         }
 
-        public static Response RequestResourceNotFound()
+        public static Response NoContent()
         {
             return new Response()
             {
