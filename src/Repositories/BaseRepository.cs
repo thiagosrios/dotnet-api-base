@@ -125,7 +125,7 @@ namespace ApiBase.Repositories
         /// <summary>
         /// Atualiza registros a partir de objeto enviado no parâmetro data
         /// </summary>
-        /// <param name="data">Objeto que deve ser atualizado no banco</param>
+        /// <param name="entity">Objeto que deve ser atualizado no banco</param>
         /// <returns>Resultado da atualização, contendo quantidade de registros atualizados</returns>
         public virtual void Update(TEntity entity)
         {
