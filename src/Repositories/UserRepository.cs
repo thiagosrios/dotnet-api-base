@@ -1,5 +1,4 @@
-﻿using ApiBase.Database;
-using ApiBase.Interfaces;
+﻿using ApiBase.Interfaces;
 using ApiBase.Models;
 
 namespace ApiBase.Repositories
@@ -9,8 +8,7 @@ namespace ApiBase.Repositories
         /// <summary>
         /// Classe para consulta de usuários
         /// </summary>
-        /// <param name="context">Instância do contexto</param>
-        public UserRepository(Context context) : base(context) { }
+        public UserRepository() { }
 
         /// <summary>
         /// Determina se um registro de usuário existe com base no id

@@ -18,7 +18,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         public void Setup()
         {
             Seed = new UserDataSeed();
-            Repository = new UserRepository(Seed.Context);
+            Repository = new UserRepository();
         }
 
         [TestCleanup]

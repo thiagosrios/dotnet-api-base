@@ -1,4 +1,5 @@
-﻿using ApiBase.Interfaces;
+﻿using ApiBase.Database;
+using ApiBase.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,15 @@ namespace ApiBase.Repositories
     public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         public DbSet<TEntity> Model { get; }
-        public DbContext Context { get; }
+        public Context Context { get; }
 
         /// <summary>
         /// Método construtor, injeção de contexto
         /// </summary>
         /// <param name="dbContext">Contexto utilizado para acesso ao model</param>
-        public BaseRepository(DbContext context)
+        public BaseRepository()
         {
-            this.Context = context;
+            this.Context = new Context();
             this.Model = this.Context.Set<TEntity>();
         }
 
