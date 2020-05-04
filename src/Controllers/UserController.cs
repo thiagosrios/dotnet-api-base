@@ -36,7 +36,7 @@ namespace ApiBase.Controllers
                 return NotFound(RequestResponse.ResourceNotFound("Usuário não encontrado"));
             }
 
-            return user;
+            return Ok(user);
         }
 
         // POST: api/User
@@ -64,7 +64,7 @@ namespace ApiBase.Controllers
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public ActionResult<User> DeleteUsers(int id)
+        public ActionResult<User> DeleteUser(int id)
         {
             User user = this.service.GetUser(id);
             if (user == null)
