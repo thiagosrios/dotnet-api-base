@@ -12,13 +12,13 @@ namespace ApiBaseTest.UnitTests.Repositories
     public class UserRepositoryTest
     {
         private UserRepository Repository { get; set; }
-        public UserDataSeed Seed { get; set; }
+        private UserDataSeed Seed { get; set; }
 
         [TestInitialize]
         public void Setup()
         {
-            Seed = new UserDataSeed();
-            Repository = new UserRepository();
+            this.Seed = new UserDataSeed();
+            this.Repository = new UserRepository();
         }
 
         [TestCleanup]
