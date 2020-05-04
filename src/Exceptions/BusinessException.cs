@@ -5,12 +5,12 @@ namespace ApiBase.Exceptions
 {
     [Serializable()]
     public class BusinessException : Exception
-    {       
+    {
         /// <summary>
         /// Método construtor básico
         /// </summary>
         /// <param name="message">Mensagem de retorno</param>
-        public BusinessException(string message) : base(message){}
+        public BusinessException(string message) : base(message) { }
 
         /// <summary>
         /// Método construtor para serialização

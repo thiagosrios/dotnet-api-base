@@ -34,7 +34,7 @@ namespace ApiBase
                     // Inclui filtros para exceções e erros de validação
                     options.Filters.Add(typeof(ValidateModelFilter));
                     options.Filters.Add(typeof(ExceptionFilter));
-                })          
+                })
                 .AddJsonOptions(options =>
                 {
                     // Opções de serialização JSON, ignorando nulos
@@ -44,7 +44,7 @@ namespace ApiBase
 
             services.AddCors(options =>
             {
-                options.AddPolicy("TrustedHosts", builder => 
+                options.AddPolicy("TrustedHosts", builder =>
                 {
                     builder
                         .AllowAnyOrigin()

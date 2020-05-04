@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ApiBase.Models;
+﻿using ApiBase.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiBase.Database
 {
@@ -7,8 +7,8 @@ namespace ApiBase.Database
     {
         public DbSet<User> Users { get; set; }
 
-        public Context() {}
-        public Context(DbContextOptions<Context> options) : base(options) 
+        public Context() { }
+        public Context(DbContextOptions<Context> options) : base(options)
         {
             Database.EnsureCreated();
         }

@@ -11,15 +11,15 @@ namespace ApiBaseTest.Utilities.Database
 
         public UserDataSeed()
         {
-            List<User> users = new List<User>() 
+            List<User> users = new List<User>()
             {
-                new User() 
-                { 
-                    FirstName = "Test", 
-                    LastName = "Test", 
-                    Email = "test@mail.com", 
-                    Login = "test", 
-                    Password = "123456" 
+                new User()
+                {
+                    FirstName = "Test",
+                    LastName = "Test",
+                    Email = "test@mail.com",
+                    Login = "test",
+                    Password = "123456"
                 },
                 new User()
                 {

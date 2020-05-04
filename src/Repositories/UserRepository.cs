@@ -10,7 +10,7 @@ namespace ApiBase.Repositories
         /// Classe para consulta de usuários
         /// </summary>
         /// <param name="context">Instância do contexto</param>
-        public UserRepository(Context context) : base(context){}
+        public UserRepository(Context context) : base(context) { }
 
         /// <summary>
         /// Determina se um registro de usuário existe com base no id

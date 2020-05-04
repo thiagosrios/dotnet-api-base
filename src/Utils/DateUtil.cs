@@ -30,7 +30,7 @@ namespace ApiBase.Utils
             }
             catch (FormatException ex)
             {
-                string exceptionMessage = ex.Message.Contains("valid") ? "Valor informado não contém uma data válida" : ""; 
+                string exceptionMessage = ex.Message.Contains("valid") ? "Valor informado não contém uma data válida" : "";
                 throw new FormatException("Erro ao formatar data: " + exceptionMessage);
             }
         }
@@ -100,7 +100,7 @@ namespace ApiBase.Utils
 
             while (startDate <= endDate)
             {
-                yield return startDate; 
+                yield return startDate;
                 startDate = startDate.AddMonths(1);
             }
         }

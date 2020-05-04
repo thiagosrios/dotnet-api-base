@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace ApiBase.Utils
 {
@@ -38,7 +38,7 @@ namespace ApiBase.Utils
                 return hash;
             }
             catch (Exception ex)
-            { 
+            {
                 throw new Exception("Erro ao gerar hash do valor informado: " + ex.Message);
             }
         }

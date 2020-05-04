@@ -1,8 +1,8 @@
-﻿using System;
-using System.Net;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
+using System;
+using System.Net;
 
 namespace ApiBase.Filters
 {
@@ -34,7 +34,7 @@ namespace ApiBase.Filters
             HttpResponse response = context.HttpContext.Response;
             response.StatusCode = (int)status;
             response.ContentType = "application/json";
-            
+
             string json = JsonConvert.SerializeObject(new { title = "Erro", status, message });
             response.WriteAsync(json);
         }

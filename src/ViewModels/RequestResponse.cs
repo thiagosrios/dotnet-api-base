@@ -35,7 +35,7 @@ namespace ApiBase.ViewModels
             };
         }
 
-        
+
         public static Response RequestFailed(string message)
         {
             return new Response()

@@ -6,7 +6,7 @@ namespace ApiBase.Filters
 {
     public class ValidateModelFilter : IResultFilter
     {
-        public void OnResultExecuted(ResultExecutedContext context){}
+        public void OnResultExecuted(ResultExecutedContext context) { }
 
         public void OnResultExecuting(ResultExecutingContext context)
         {

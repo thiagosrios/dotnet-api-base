@@ -65,7 +65,7 @@ namespace ApiBase.Repositories
         {
             List<TEntity> list = new List<TEntity>();
             IQueryable<TEntity> query = this.Search(predicate);
-            if(query != null && query.Any())
+            if (query != null && query.Any())
             {
                 query = this.BuildIncludeQuery(query, includes);
                 list = query.AsNoTracking().ToList();
@@ -84,7 +84,7 @@ namespace ApiBase.Repositories
         {
             TEntity entity = null;
             IQueryable<TEntity> query = this.Search(predicate);
-            if(query != null && query.Any())
+            if (query != null && query.Any())
             {
                 query = this.BuildIncludeQuery(query, includes);
                 entity = query.SingleOrDefault();
@@ -103,7 +103,7 @@ namespace ApiBase.Repositories
         {
             if (includes != null && includes.Length > 0)
             {
-                foreach(string include in includes)
+                foreach (string include in includes)
                 {
                     query = query.Include(include);
                 }
@@ -147,7 +147,7 @@ namespace ApiBase.Repositories
         /// <returns>Valor indicativo da existência do registro na base</returns>
         public bool Exists(Expression<Func<TEntity, bool>> predicate)
         {
-            return this.Model.Any(predicate); 
+            return this.Model.Any(predicate);
         }
     }
 }

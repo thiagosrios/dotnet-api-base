@@ -9,9 +9,9 @@ using System.Linq;
 namespace ApiBaseTest.UnitTests.Repositories
 {
     [TestClass]
-    public class UserRepositoryTest
+    public class BaseRepositoryTest
     {
-        private UserRepository Repository { get; set; }
+        private BaseRepository<User> Repository { get; set; }
         public UserDataSeed Seed { get; set; }
 
         [TestInitialize]
@@ -28,7 +28,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestFindUserById()
+        public void TestFindById()
         {
             User result = this.Repository.FindById(1);
 
@@ -36,7 +36,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestFindAllUsers()
+        public void TestFindAll()
         {
             IEnumerable<User> users = this.Repository.FindAll();
 
@@ -45,7 +45,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestFindSingleUser()
+        public void TestFindSingle()
         {
             User result = this.Repository.FindSingle(x => x.Id == 1);
 
@@ -53,7 +53,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestFindListUsers()
+        public void TestFindList()
         {
             List<User> result = this.Repository.FindList(x =>
                 EF.Functions.Like(x.LastName, "%Test")
@@ -64,7 +64,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestSaveUser()
+        public void TestSave()
         {
             User user = new User()
             {
@@ -81,7 +81,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestUpdateUser()
+        public void TestUpdate()
         {
             User user = this.Repository.FindById(1);
             user.LastName = "Test Update";
@@ -92,7 +92,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestDeleteUser()
+        public void TestDelete()
         {
             User user = this.Repository.FindById(1);
             this.Repository.Delete(user);
@@ -103,7 +103,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestIfUserExists()
+        public void TestExists()
         {
             bool result = this.Repository.Exists(x => x.Id == 1);
 
@@ -111,7 +111,7 @@ namespace ApiBaseTest.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void TestSearchUser()
+        public void TestSearch()
         {
             IQueryable<User> result = this.Repository.Search(x => x.Email == "test@mail.com");
 
