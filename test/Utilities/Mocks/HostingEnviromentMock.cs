@@ -9,7 +9,7 @@ namespace ApiBaseTest.Utilities.Mocks
         {
             Mock<IWebHostEnvironment> hosting = new Mock<IWebHostEnvironment>();
 
-            hosting.Setup(x => x.ApplicationName).Returns("AUDIG");
+            hosting.Setup(x => x.ApplicationName).Returns("ApiBase");
             hosting.Setup(x => x.ContentRootPath).Returns("../../../../api/");
             hosting.Setup(x => x.EnvironmentName).Returns("Test");
 
@@ -20,7 +20,7 @@ namespace ApiBaseTest.Utilities.Mocks
         {
             Mock<IWebHostEnvironment> hosting = new Mock<IWebHostEnvironment>();
 
-            hosting.Setup(x => x.ApplicationName).Returns("AUDIG");
+            hosting.Setup(x => x.ApplicationName).Returns("ApiBase");
             hosting.Setup(x => x.ContentRootPath).Returns("");
             hosting.Setup(x => x.EnvironmentName).Returns("Test");
 
@@ -31,7 +31,7 @@ namespace ApiBaseTest.Utilities.Mocks
         {
             Mock<IWebHostEnvironment> hosting = new Mock<IWebHostEnvironment>();
 
-            hosting.Setup(x => x.ApplicationName).Returns("AUDIG");
+            hosting.Setup(x => x.ApplicationName).Returns("ApiBase");
             hosting.Setup(x => x.ContentRootPath).Returns("../../../../test/");
             hosting.Setup(x => x.EnvironmentName).Returns("Test");
 
