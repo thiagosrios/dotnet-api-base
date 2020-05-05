@@ -29,6 +29,6 @@ dotnet watch run
 ```
 No dois modos de execução uma instância do navegador padrão será aberta direcionada para a rota principal da API. Se tudo estiver funcionando, a seguinte mensagem deve aparecer: 
 
-> API em execucao
+> API em Execução
 
 Caso queira alterar esse comportamento, edite a propriedade *launchBrowser* do perfil específico de execução, dentro da seção *profiles*.  

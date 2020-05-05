@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text;
 
 namespace ApiBase
 {
@@ -74,7 +75,8 @@ namespace ApiBase
                 endpoints.MapControllers();
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("API em execucao");
+                    context.Response.Headers.Append("Content-Type", "application/json; charset=utf-8");
+                    await context.Response.WriteAsync("API em Execução");
                 });
             });
         }
